@@ -12,6 +12,7 @@ const Cardy = styled.div`
   border: 2px solid #fffaf0
   border-radius: 0.25rem;
   width: 20rem;
+  margin: 20px;
 `;
 const Title = styled.h1`
   text-align: center;
@@ -63,22 +64,20 @@ const Counter = styled.h1`
   animation: ${neonKeyframe} 1.5s ease-in-out infinite alternate;
 `;
 
-const Card = props => {
+const Card = ({ title, poster, where, when, description }) => {
   return (
     <Cardy>
-      <Title>Falcon IV</Title>
-      <Poster src="https://s3.amazonaws.com/launchlibrary/RocketImages/Ariane+5+ECA_1920.jpg" />
+      <Title>{title}</Title>
+      <Poster src={poster} />
       <Answer>
-        <Question>Where:</Question>Ariane Launch Area 3, Kourou
+        <Question>Where:</Question>
+        {where}
       </Answer>
       <Answer>
-        <Question>When:</Question>January 16, 2020 21:05:00 UTC
+        <Question>When:</Question>
+        {when}
       </Answer>
-      <Description>
-        Shijian 20 is an experimental geostationary communications satellite.
-        This is also a return-to-flight launch for Long March 5 after a July
-        2017 failure.
-      </Description>
+      <Description>{description}</Description>
       <Counter>20d 12h 42m 45s</Counter>
     </Cardy>
   );
