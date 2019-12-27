@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import img from "../assets/background.jpg";
+import Countdown from "./Countdown";
 
 const Cardy = styled.div`
   display: flex;
@@ -46,23 +47,6 @@ const Description = styled.p`
   font-weight: 400;
   color: #ecf0f1;
 `;
-export const neonKeyframe = keyframes`
-from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-  }`;
-const Counter = styled.h1`
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 400;
-  color: #ecf0f1;
-  font-family: "Julius Sans One", sans-serif;
-  -webkit-animation: ${neonKeyframe} 1.5s ease-in-out infinite alternate;
-  -moz-animation: ${neonKeyframe} 1.5s ease-in-out infinite alternate;
-  animation: ${neonKeyframe} 1.5s ease-in-out infinite alternate;
-`;
 
 const Card = ({ title, poster, where, when, description }) => {
   return (
@@ -78,7 +62,7 @@ const Card = ({ title, poster, where, when, description }) => {
         {when}
       </Answer>
       <Description>{description}</Description>
-      <Counter>20d 12h 42m 45s</Counter>
+      <Countdown date={when} />
     </Cardy>
   );
 };
