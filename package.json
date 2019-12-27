@@ -1,0 +1,38 @@
+{
+  "name": "kelaunch",
+  "version": "1.0.0",
+  "description": "A website for incoming launches using with Reactjs + Styled Components + Hooks.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "format": "prettier \"src/**/* .{js,html}\" --write",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akursat/kelaunch.git"
+  },
+  "keywords": [
+    "reactjs",
+    "styled",
+    "components",
+    "hooks"
+  ],
+  "author": "akursat",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/akursat/kelaunch/issues"
+  },
+  "homepage": "https://github.com/akursat/kelaunch#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-flexbox-grid": "^2.1.2",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1"
+  }
+}
