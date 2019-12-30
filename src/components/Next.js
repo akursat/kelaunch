@@ -18,7 +18,7 @@ const NButton = styled.a`
 
 const Next = props => {
   return (
-    <NButton onClick={() => console.log("clicke")}>
+    <NButton onClick={props.onClick}>
       <FontAwesomeIcon icon={faChevronRight} size="4x" />
     </NButton>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { render } from "react-dom";
 import useAxios from "axios-hooks";
 import styled, { createGlobalStyle } from "styled-components";
@@ -6,6 +6,7 @@ import img from "./assets/background.jpg";
 import Card from "/components/Card";
 import Next from "/components/Next";
 import Return from "/components/Return";
+import Loading from "/components/Loading";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,31 +29,50 @@ const Row = styled.div`
   flex-direction: row;
 `;
 
+const apiURL = "https://launchlibrary.net/1.4/launch/?next=3";
+
 const App = props => {
+  const [offset, setOffset] = useState(0);
+  const nextHandler = e => {
+    setOffset(offset + 3);
+  };
+
+  const returnHandler = e => {
+    setOffset(0);
+  };
+
   const [{ data, loading, error }, refetch] = useAxios(
-    "https://launchlibrary.net/1.4/launch/next/3"
+    `${apiURL}&offset=${offset}`
   );
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error, Check the API!</p>;
-
   return (
     <Content>
       <GlobalStyle />
-      <Return />
-      <Row>
-        {data["launches"].map(rocket => (
-          <Card
-            key={rocket.id}
-            where={rocket["location"]["name"]}
-            when={rocket["windowstart"]}
-            poster={rocket["rocket"]["imageURL"]}
-            description={rocket["missions"][0]["description"]}
-            title={rocket["missions"][0]["name"]}
-          />
-        ))}
-      </Row>
-      <Next />
+      <Return onClick={returnHandler} />
+      {loading === true && <Loading />}
+      {data !== undefined && (
+        <Row>
+          {data["launches"].map(rocket => {
+            const { missions } = rocket;
+            const { description } =
+              missions[0] !== undefined ? missions[0] : "";
+            const { name } = missions[0] !== undefined ? missions[0] : "";
+            return (
+              <Card
+                key={rocket.id}
+                where={rocket["location"]["name"]}
+                when={rocket["windowstart"]}
+                poster={rocket["rocket"]["imageURL"]}
+                description={description}
+                title={name}
+              />
+            );
+          })}
+        </Row>
+      )}
+
+      <Next onClick={nextHandler} />
     </Content>
   );
 };

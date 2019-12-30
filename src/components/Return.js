@@ -17,7 +17,7 @@ const RButton = styled.a`
 `;
 const Return = props => {
   return (
-    <RButton onClick={() => console.log("clicke")}>
+    <RButton onClick={props.onClick}>
       <FontAwesomeIcon icon={faHistory} size="4x" />
     </RButton>
   );
